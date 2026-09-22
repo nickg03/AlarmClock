@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OLEDMenuUI - Arduino OLED Menu Library</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #24292e;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      color: #222;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    code {
+      background: #eaeaea;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    pre {
+      background: #f3f3f3;
+      padding: 12px;
+      border-left: 4px solid #0057b8;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background: #0057b8;
+      color: white;
+      text-align: left;
+    }
+
+    a {
+      color: #0057b8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #0057b8;
+      color: white;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OLEDMenuUI</h1>
+    <p>An intuitive and flexible menu system for SSD1306 OLED displays</p>
+  </header>
+
+  <div class="container">
+    <h2>📌 Introduction</h2>
+    <p>
+      <strong>OLEDMenuUI</strong> is a lightweight, highly customizable menu library for Arduino boards equipped with SSD1306 128x32 I2C OLED displays. Designed for microcontrollers with limited resources, it provides smooth navigation, dynamic submenus, EEPROM-based settings storage, and integrated sensor display support.
+    </p>
+
+    <h2>🧠 Features</h2>
+    <ul>
+      <li>Clean menu UI with scrolling and rounded selector</li>
+      <li>Navigation with 4 push buttons (UP, DOWN, SELECT, BACK)</li>
+      <li>EEPROM storage for persistent settings (Sound & Brightness)</li>
+      <li>Sensor integration support (DHT11, HC-SR04)</li>
+      <li>Custom callbacks for menu items and submenus</li>
+      <li>Adjustable brightness & buzzer feedback</li>
+      <li>Modular and extensible code structure</li>
+    </ul>
+
+    <h2>🖥️ Compatible Boards</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Board</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Arduino Uno</td><td>✅ Fully Supported</td></tr>
+        <tr><td>Arduino Nano</td><td>✅ Fully Supported</td></tr>
+        <tr><td>Arduino Mega</td><td>✅ Fully Supported</td></tr>
+        <tr><td>ESP8266 (NodeMCU)</td><td>✅ Tested & Supported</td></tr>
+        <tr><td>ESP32</td><td>🧪 Partial Support (Under Testing)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>⚙️ Hardware Requirements</h2>
+    <ul>
+      <li>SSD1306 128x32 OLED Display (I2C)</li>
+      <li>4 Push Buttons (UP, DOWN, SELECT, BACK)</li>
+      <li>DHT11 Sensor (for Temp & Humidity - optional)</li>
+      <li>HC-SR04 Ultrasonic Sensor (optional)</li>
+      <li>Buzzer (optional, for click sound)</li>
+    </ul>
+
+    <h2>🔌 Pin Configuration (Example)</h2>
+    <pre>
+BUTTON_UP     → D2
+BUTTON_DOWN   → D3
+BUTTON_SELECT → D4
+BUTTON_BACK   → D5
+BUZZER_PIN    → D6
+DHT11         → D7
+HC-SR04 TRIG  → D8
+HC-SR04 ECHO  → D9
+OLED SDA/SCL  → A4/A5 (for Uno/Nano)
+    </pre>
+
+    <h2>📦 Installation</h2>
+    <ol>
+      <li>Clone this repository into your Arduino libraries folder:<br>
+        <code>git clone https://github.com/sudoyasir/OLEDMenuUI</code>
+      </li>
+      <li>Install dependencies via Library Manager:
+        <ul>
+          <li>Adafruit GFX Library</li>
+          <li>Adafruit SSD1306</li>
+          <li>DHT Sensor Library (by Adafruit)</li>
+        </ul>
+      </li>
+      <li>Restart Arduino IDE.</li>
+    </ol>
+
+    <h2>🧪 Example</h2>
+    <p>
+      You can find full working demo in <code>examples/</code>. It includes:
+    </p>
+    <ul>
+      <li>Real-time sensor reading display (temperature, humidity, distance)</li>
+      <li>About screen</li>
+      <li>Settings submenu with persistent toggles</li>
+    </ul>
+
+    <h2>📘 API Overview</h2>
+    <ul>
+      <li><code>begin()</code> – Initializes the menu</li>
+      <li><code>setMenuItems(items[], count)</code> – Sets menu options</li>
+      <li><code>setCallback(func)</code> – Called on selection</li>
+      <li><code>setBackCallback(func)</code> – Called on back button</li>
+      <li><code>setBeepEnabled(bool)</code> – Enable/disable buzzer</li>
+      <li><code>setBrightnessLevel(uint8_t)</code> – Adjust OLED brightness</li>
+      <li><code>update()</code> – Call in loop to render and detect input</li>
+    </ul>
+
+    <h2>📁 Repository</h2>
+    <p>
+      Visit the GitHub repo: <br />
+      <a href="https://github.com/sudoyasir/OLEDMenuUI" target="_blank">
+        github.com/sudoyasir/OLEDMenuUI
+      </a>
+    </p>
+
+    <h2>📜 License</h2>
+    <p>This project is licensed under the MIT License.</p>
+
+    <h2>🙋‍♂️ Author</h2>
+    <p>Developed by <a href="https://github.com/sudoyasir" target="_blank">@sudoyasir</a>. Contributions are welcome!</p>
+  </div>
+
+  <footer>
+    &copy; 2025 OLEDMenuUI by @sudoyasir — All rights reserved.
+  </footer>
+</body>
+</html>
