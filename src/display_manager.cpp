@@ -277,7 +277,6 @@ void flickerDisplay() {
             displayOn = true;
         }
     }
-
 }
 
   void drawAlarmMenu() {

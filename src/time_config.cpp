@@ -41,7 +41,6 @@ void writeUserTime(tm userTime) {
 void rtcFound() {
    if (! rtc.begin()) {
     Serial.println("RTC not found");
-    Serial.flush(); // Clear the terminal
     for (;;); // Infinitely loop if RTC is not found
    }
 }

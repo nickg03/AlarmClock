@@ -35,7 +35,6 @@ void initInputManager() {
 
 }
 
-
 bool inputPressed(InputIndex btn) { // For buttons/switches. rotary encoder cw and ccw are handles separately
     if (digitalRead(INPUTS[btn].pin) == LOW) {
         return true;
@@ -129,12 +128,9 @@ void encoderDirection() {
                      previewTurnOffTime = millis() + 2000;               // Hard-coded 2-second window
                      isPreviewActive = true;   
                   // playAlarmSound(editAlarmBuffer.chosenAlarm, 20000, alarmTrigger);
-              }
-
-          
+              } 
         }
         updateDisplayFlag = true;
-        
     }
 
     switch (currentUIState) {
@@ -175,7 +171,6 @@ void encoderDirection() {
     }
 
   }
-  
   CLK_previous = CLK_current;
 }
 

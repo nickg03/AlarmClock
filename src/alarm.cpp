@@ -228,7 +228,6 @@ void playAlarmSound() {
         activeToneIndex = previewToneIndex;
     }
 
-
     if (!wasPlaying || activeToneIndex != lastToneIndex) { // Ensures sure that two alarms cannot overlap
         switch (activeToneIndex) {
             case 0:
@@ -249,12 +248,8 @@ void playAlarmSound() {
                 wasPlaying = false;
                 break;
         }
-
-    
             wasPlaying = true;
-            lastToneIndex = activeToneIndex;
-
-     
+            lastToneIndex = activeToneIndex; 
     }
 }
 
