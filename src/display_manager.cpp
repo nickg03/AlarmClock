@@ -73,7 +73,10 @@ void updateDisplay() {
 
   if (dstEnabled) {
     displayTime.tm_hour += 1;
-    mktime(&displayTime); 
+    if (displayTime.tm_hour >= 24) {
+      displayTime.tm_hour = 0;
+      displayTime.tm_wday = (displayTime.tm_wday + 1) % 7; 
+    }
   }
 
   switch (currentUIState) {
@@ -82,6 +85,7 @@ void updateDisplay() {
         break;
     case STATE_DEFAULT:
       if (isSnoozing) {
+            display.ssd1306_command(SSD1306_DISPLAYON);
             displayClear();
             
             displayString("Snoozing... zZz", 1, 20, 10, false);

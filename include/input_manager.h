@@ -17,7 +17,6 @@ enum InputIndex {
 
  const int buzzer = 4;
 
-
 // Structure that maps an input to a pin number
 struct InputMap {
     InputIndex type;

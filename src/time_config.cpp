@@ -13,7 +13,7 @@
 bool dstEnabled = false;
 bool standardFormat = false;
 
-String dayOfTheWeek(tm& displayTime) { // Algorithm that returns a day of the week given a date and time (this does not work as well as expected).
+String dayOfTheWeek(tm& displayTime) { // Algorithm that returns a day of the week given a date and time.
     switch (displayTime.tm_wday) {
         case 0: return "Sun";
         case 1: return "Mon";
